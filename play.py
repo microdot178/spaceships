@@ -8,7 +8,7 @@ pygame.display.set_caption('spaceships battle')
 
 W = 700 # Размеры окна
 H = 400
-COLOR = (255, 255, 255) # Цвет фона экрана
+COLOR = (0, 0, 0) # Цвет фона экрана
 
 FPS = 25
 start1_y = 20 # Стартовая позиция 1st кораблика
@@ -50,10 +50,10 @@ while play:
             exit()
 
     keys = pygame.key.get_pressed() # Управление 1st игрока
-    if keys[pygame.K_q]:
-        first_ship.rect.y -= speed
-    elif keys[pygame.K_a]:
-        first_ship.rect.y += speed
+    if keys[pygame.K_q] and first_ship.rect.y > 10:
+        first_ship.rect.y -= speed 
+    elif keys[pygame.K_a] and first_ship.rect.y < 360:
+        first_ship.rect.y += speed 
     elif keys[pygame.K_s]:
         lazer1_Y = first_ship.rect[1] + 11 
         lazer1 = Lazer(lazer1_X, lazer1_Y, 'lazer1.png')
@@ -68,9 +68,9 @@ while play:
             pygame.display.update()
 
     keys = pygame.key.get_pressed() # Управление 2st игрока
-    if keys[pygame.K_UP]:
+    if keys[pygame.K_UP] and second_ship.rect.y > 5:
         second_ship.rect.y -= speed
-    elif keys[pygame.K_DOWN]:
+    elif keys[pygame.K_DOWN] and second_ship.rect.y < 360:
         second_ship.rect.y += speed
     elif keys[pygame.K_LEFT]:
         lazer2_Y = second_ship.rect[1] + 11
